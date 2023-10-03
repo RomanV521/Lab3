@@ -29,6 +29,11 @@ namespace Lab3
             } 
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="realPart">действительное значение</param>
+        /// <param name="imaginaryPart">мнимое значение</param>
         public ComplexNumber(double realPart, double imaginaryPart)
         {
             this.real = realPart;
@@ -44,12 +49,22 @@ namespace Lab3
             return Math.Sqrt(real * real + Imaginary * Imaginary);
         }
         
+        /// <summary>
+        /// Функция для нахождения Ф
+        /// </summary>
+        /// <returns>значение Ф</returns>
         public double Argument() 
         { 
             return Math.Atan(Imaginary / real);
         }
 
-        // a^(1/n) = |a|^(1/n) * (cos(φ+2pi*k)/n + isin(φ+2pi*k)/n)
+        /// <summary>
+        /// n-й корень комплексного числа 
+        /// a^(1/n) = |a|^(1/n) * (cos(φ+2pi*k)/n + isin(φ+2pi*k)/n)
+        /// </summary>
+        /// <param name="power">Степень</param>
+        /// <returns>Корень комплексного числа</returns>
+        /// <exception cref="Exception">Степень равна 0</exception>
         public ComplexNumber RootByPower(double power) {
             if (power == 0)
             {
@@ -60,16 +75,35 @@ namespace Lab3
             return new ComplexNumber(realPart, imaginaryPart);
         }
 
+        /// <summary>
+        /// Перегрузка оператора +
+        /// </summary>
+        /// <param name="left">Первое комплексное число</param>
+        /// <param name="right">Второе комплексное число</param>
+        /// <returns>Сумма</returns>
         public static ComplexNumber operator +(ComplexNumber left, ComplexNumber right)
         {
             return new ComplexNumber(left.real + right.real, left.Imaginary + right.Imaginary);
         }
 
+        /// <summary>
+        /// Перегрузка оператора -
+        /// </summary>
+        /// <param name="left">Первое комплексное число</param>
+        /// <param name="right">Второе комплексное число</param>
+        /// <returns>Разность</returns>
         public static ComplexNumber operator -(ComplexNumber left, ComplexNumber right)
         {
             return new ComplexNumber(left.real - right.real, left.Imaginary - right.Imaginary);
         }
 
+
+        /// <summary>
+        /// Перегрузка оператора *
+        /// </summary>
+        /// <param name="left">Первое комплексное число</param>
+        /// <param name="right">Второе комплексное число</param>
+        /// <returns>Произведением</returns>
         public static ComplexNumber operator *(ComplexNumber left, ComplexNumber right)
         {
             double realPart = left.real * right.real - left.Imaginary * right.Imaginary;
@@ -77,6 +111,13 @@ namespace Lab3
             return new ComplexNumber(realPart, imaginaryPart);
         }
 
+        /// <summary>
+        /// Перегрузка оператора /
+        /// </summary>
+        /// <param name="left">Первое комплексное число</param>
+        /// <param name="right">Второе комплексное число</param>
+        /// <returns>Частное</returns>
+        /// <exception cref="Exception">Знаменатель</exception>
         public static ComplexNumber operator /(ComplexNumber left, ComplexNumber right)
         {
             double denominator = right.real * right.real + right.Imaginary * right.Imaginary;
@@ -89,6 +130,11 @@ namespace Lab3
             return new ComplexNumber(realPart, imaginaryPart);
         }
 
+        /// <summary>
+        /// Перегрузка оператора ++
+        /// </summary>
+        /// <param name="left">Первое комплексное число</param>
+        /// <returns>Комплексное число увеличеное на 1</returns>
         public static ComplexNumber operator ++(ComplexNumber left)
         {
             return new ComplexNumber(left.real+1, left.Imaginary+1);
