@@ -14,6 +14,8 @@
             try
             {
                 Console.WriteLine(R);
+                Console.WriteLine(R.Abs());
+                Console.WriteLine(R++);
 
             } catch (Exception e)
             {
